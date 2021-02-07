@@ -1,8 +1,6 @@
-@import url(shabnam.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
 body {
   font-family:  serif !important;
   font-weight: 300;
-  direction: rtl;
   background-color: #a3d0db';
   
 }

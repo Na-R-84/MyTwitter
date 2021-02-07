@@ -1,23 +1,20 @@
 body {
-    margin: 0;
-    direction: rtl;
-  }
-  /* Add placeholder for a contenteditable element (NewTwitt.js)*/
-  .editable:empty:before {
-    content: attr(data-placeholder);
-    color: #999999;
-  }
-  
-  a {
-    text-decoration: none;
-    color:unset;
-  
-  }
-  a:visited {
-    color: unset;
-  }
-  
-  
-  .uni_m_b_small {
-    margin-bottom: 1rem;
-  }
+  margin: 0;
+}
+/* Add placeholder for a contenteditable element (NewTweet.js)*/
+.editable:empty:before {
+  content: attr(data-placeholder);
+  color: #999999;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+a:visited {
+  color: unset;
+}
+
+.uni_m_b_small {
+  margin-bottom: 1rem;
+}

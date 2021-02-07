@@ -1,39 +1,47 @@
-import React, {useEffect, useState} from 'react';
-import UseStyles from './Styles'
-import Header from "../../components/header/Header";
-import Divider from "@material-ui/core/Divider";
-import NewTwitt from "./components/NewTwitt";
-import TwittList from "./components/TwittList";
-import {Home as HomeIcon} from "@material-ui/icons";
-// import {getAllTwitts} from "../../api/api_twitt";
-import {setTwittList, useTwittDispatch, useTwittState} from "../../context/TwittContext";
-import {toast} from "react-toastify";
+import React, { useEffect } from 'react';
+import UseStyles from './Styles';
+import Header from '../../components/header/Header';
+import Divider from '@material-ui/core/Divider';
+import NewTweet from './components/NewTweet';
+import TweetList from './components/Tweet';
+import { Home as HomeIcon } from '@material-ui/icons';
+import {
+  setTweetList,
+  useTweetDispatch,
+  useTweetState,
+} from '../../context/TweetContext';
+import { toast } from 'react-toastify';
+import Axios from 'axios';
 
 const Home = () => {
   const classes = UseStyles();
 
-  const TwittDispatch = useTwittDispatch();
-  const {twittList : twitts} = useTwittState();
-  // const [twittts, setTwitts] = useState([]);
+  const TweetDispatch = useTweetDispatch();
+  const { tweetList: tweets } = useTweetState();
 
   useEffect(() => {
-    UpdateTwitts();
+    UpdateTweets();
   }, []);
 
-  const UpdateTwitts = () => {
-    getAllTwitts((isOk, data) => {
-      if (!isOk)
-        return toast.error("Fail To Fetch Twitts");
-      setTwittList(TwittDispatch,data);
-    })
-  }
+  const UpdateTweets = () => {
+    const fetchData = async () => {
+      try {
+        const { data } = await Axios.get('/api/tweets');
+
+        setTweetList(TweetDispatch, data);
+      } catch (err) {
+        toast.error('Fail To Fetch Tweets');
+      }
+    };
+    fetchData();
+  };
 
   return (
     <div className={classes.root}>
-      <Header title={"Hem"} icon={<HomeIcon/>}/>
-      <Divider className={classes.divider}/>
-      <NewTwitt updateTwitts={UpdateTwitts}/>
-      <TwittList data={twitts}/>
+      <Header title={'Hem'} icon={<HomeIcon />} />
+      <Divider className={classes.divider} />
+      <NewTweet updateTweets={UpdateTweets} />
+      <TweetList data={tweets} />
     </div>
   );
 };

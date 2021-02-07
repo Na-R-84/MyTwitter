@@ -1,7 +1,7 @@
 import express from 'express';
 
 const app = express();
-cont tweets = [];
+const tweets = [];
 
 // MongoDB
 

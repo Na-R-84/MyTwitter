@@ -1,13 +1,13 @@
-import { Directions } from "@material-ui/icons";
-import {makeStyles} from "@material-ui/styles";
+import { Directions } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/styles';
 
-const UseStyles = makeStyles(theme => ({
+const UseStyles = makeStyles((theme) => ({
   container: {
-    background: "white",
-    width: "30rem",
-    margin: "10rem auto",
-    display: "flex",
-    flexDirection: "column"
+    background: 'white',
+    width: '30rem',
+    margin: '10rem auto',
+    display: 'flex',
+    flexDirection: 'column',
   },
   headerText: {
     margin: '1rem',
@@ -15,18 +15,13 @@ const UseStyles = makeStyles(theme => ({
   },
   tab: {
     flex: 1,
-    
   },
   containerInput: {
     padding: '1rem 0.8rem',
-    display :'flex',
-    flexDirection : 'column',
-    Directions:'rtl'
+    display: 'flex',
+    flexDirection: 'column',
   },
-  label:{
-    direction: 'ltr'
-  }
+  label: {},
 }));
-
 
 export default UseStyles;
