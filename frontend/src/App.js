@@ -46,8 +46,7 @@ const App = () => {
     </>
   );
 };
-
-const isLogin = () => !!localStorage.getItem('x-auth-token');
+const isLogin = () => !!localStorage.getItem('token');
 
 const PublicRoute = ({ component, ...props }) => {
   return (

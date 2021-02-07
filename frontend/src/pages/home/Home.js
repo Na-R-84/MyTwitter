@@ -3,7 +3,7 @@ import UseStyles from './Styles';
 import Header from '../../components/header/Header';
 import Divider from '@material-ui/core/Divider';
 import NewTweet from './components/NewTweet';
-import TweetList from './components/Tweet';
+import TweetList from './components/TweetList';
 import { Home as HomeIcon } from '@material-ui/icons';
 import {
   setTweetList,

@@ -1,5 +1,7 @@
 import React from 'react';
 import UseStyles from '../Styles';
+
+import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -25,14 +27,16 @@ const NewTweet = ({ updateTweets }) => {
   const newTweetClick = () => {
     const tweetText = tweet;
     if (!tweetText) return;
-    const formData = new FormData();
-    formData.append('text', tweetText);
-    if (imageFile) formData.append('image', imageFile);
-    const token = 'secret';
+
+    const token = localStorage.getItem('token');
     try {
-      const { data } = Axios.post('/api/tweets', formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data } = Axios.post(
+        '/api/tweets',
+        { text: tweetText },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       toast.success('Skickad');
       updateTweets();
       setTweet(tweetDispatch, '');
@@ -100,20 +104,13 @@ const NewTweet = ({ updateTweets }) => {
       )}
       <Grid container direction={'row-reverse'} style={{ marginTop: 16 }}>
         <Button
-          variant={'contained'}
-          color={'primary'}
+          variant="contained"
+          color="primary"
           className={classes.newTweetBtn}
           onClick={newTweetClick}
         >
           Tweeta
         </Button>
-        <IconButton className={classes.newTweetImgBtn} onClick={selectImg}>
-          <img
-            src={'/images/tweetpic.png'}
-            alt="tweet"
-            className={classes.newTweetImg}
-          />
-        </IconButton>
       </Grid>
     </div>
   );

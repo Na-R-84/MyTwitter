@@ -36,7 +36,7 @@ const RightSidebar = () => {
             <img src={'/images/logo.png'} alt="logo" />
           </Grid>
           <Grid item>
-            <Typography className={classes.logoType}>My Tweet</Typography>
+            <Typography className={classes.logoType}>My Twitter</Typography>
           </Grid>
         </Grid>
       </Link>

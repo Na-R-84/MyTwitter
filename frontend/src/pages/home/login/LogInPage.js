@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import UseStyles from './Styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { toast } from 'react-toastify';
 import Axios from 'axios';
@@ -16,40 +15,39 @@ const REG_TAB_VALUE = 2;
 const LogInPage = () => {
   const classes = UseStyles();
 
-  const [tab, setTab] = useState(REG_TAB_VALUE);
+  const [tab, setTab] = useState(LOGIN_TAB_VALUE);
 
   //login state
-  const [usernameLogin, setUsernameLogin] = useState();
-  const [passwordLogin, setPasswordLogin] = useState();
+  const [userNameLogin, setUsernameLogin] = useState('');
+  const [passwordLogin, setPasswordLogin] = useState('');
 
   //register state
-  const [emailRegister, setEmailRegister] = useState();
-  const [fullNameRegister, setFullNameRegister] = useState();
-  const [usernameRegister, setUsernameRegister] = useState();
-  const [passwordRegister, setPasswordRegister] = useState();
-  const [confPasswordRegister, setConfPasswordRegister] = useState();
+  const [emailRegister, setEmailRegister] = useState('');
+  const [fullNameRegister, setFullNameRegister] = useState('');
+  const [userNameRegister, setUsernameRegister] = useState('');
+  const [passwordRegister, setPasswordRegister] = useState('');
+  const [confPasswordRegister, setConfPasswordRegister] = useState('');
 
   const handleChangeTab = (e, newValue) => {
     setTab(newValue);
   };
 
   const validateLogin = (user) => {
-    if (!user.username) return ' Användarnamn är obligatoriskt';
+    if (!user.userName) return ' Användarnamn är obligatoriskt';
     if (!user.password) return 'Lösenord är obligatoriskt';
   };
   const validateRegister = (user) => {
-    if (!user.username) return 'Användarnamn är obligatoriskt';
+    if (!user.userName) return 'Användarnamn är obligatoriskt';
     if (!user.name) return 'Namn  är obligatoriskt';
     if (!user.password) return 'Ange Lösenord';
     if (user.password !== user.confPasswordRegister) return 'Upprepa lösenord';
   };
 
   const handleRegister = async (e) => {
-    console.log('hi');
     e.preventDefault();
     const user = {
       name: fullNameRegister,
-      username: usernameRegister,
+      userName: userNameRegister,
       password: passwordRegister,
       confPasswordRegister: confPasswordRegister,
     };
@@ -60,36 +58,42 @@ const LogInPage = () => {
       const { data } = await Axios.post('/api/users', {
         email: emailRegister,
         fullName: fullNameRegister,
-        userName: usernameRegister,
+        userName: userNameRegister,
         password: passwordRegister,
       });
       toast.success('Skapad');
-      localStorage.setItem('name', data.name);
-      localStorage.setItem('image', data.image);
-      localStorage.setItem('username', data.username);
-      localStorage.setItem('x-auth-token', data['x-auth-token']);
-      window.location.reload();
+      localStorage.setItem('fullName', data.user.fullName);
+      localStorage.setItem('image', data.user.image);
+      localStorage.setItem('userName', data.user.userName);
+      localStorage.setItem('token', data.user.token);
+      // window.location.reload();
     } catch (err) {
       toast.error('försök igen');
     }
   };
-  const handleLogin = () => {
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     const user = {
-      username: usernameLogin,
+      userName: userNameLogin,
       password: passwordLogin,
     };
     const error = validateLogin(user);
     if (error) return toast.warn('försök igen');
-    // loginApi(user, (isOk, data) => {
-    //   if (!isOk)
-    //     return toast.error("försök igen");
-    //   toast.success("Inloggad");
-    //   localStorage.setItem("name", data.name);
-    //   localStorage.setItem("image", data.image);
-    //   localStorage.setItem("username", data.username);
-    //   localStorage.setItem("x-auth-token", data["x-auth-token"]);
-    //   window.location.reload();
-    // })
+    try {
+      const { data } = await Axios.post('/api/users/login', {
+        userName: userNameLogin,
+        password: passwordLogin,
+      });
+      toast.success('Skapad');
+      localStorage.setItem('fullName', data.user.fullName);
+      localStorage.setItem('image', data.image);
+      localStorage.setItem('userName', data.userName);
+      localStorage.setItem('token', data.user.token);
+      window.location.reload();
+    } catch (err) {
+      toast.error('försök igen');
+    }
   };
 
   return (
@@ -113,23 +117,31 @@ const LogInPage = () => {
       {/* Login Tabs */}
 
       {tab === LOGIN_TAB_VALUE && (
-        <div className={classes.containerInput}>
-          <Typography className={classes.label}>Användarnamn</Typography>
-          <Input
-            className={'uni_m_b_small'}
-            value={usernameLogin}
+        <form className={classes.containerInput} onSubmit={handleLogin}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Användarnamn"
+            name="userNameLogin"
+            type="text"
             onChange={(e) => setUsernameLogin(e.target.value)}
-          ></Input>
-          <Typography className={classes.label}>Lösenord</Typography>
-          <Input
-            className={'uni_m_b_small'}
-            value={passwordLogin}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Lösenord"
+            name="passwordLogin"
+            type="password"
             onChange={(e) => setPasswordLogin(e.target.value)}
           />
-          <Button variant={'contained'} onClick={handleLogin}>
+          <Button color="primary" variant="contained" type="submit">
             logga in
           </Button>
-        </div>
+        </form>
       )}
       {/* register Tabs */}
       {tab === REG_TAB_VALUE && (

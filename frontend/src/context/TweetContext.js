@@ -6,13 +6,13 @@ var TweetDispatchContext = React.createContext();
 
 function TweettReducer(state, action) {
   switch (action.type) {
-    case 'SET_TWITT_TEXT':
+    case 'SET_TWEET_TEXT':
       return { ...state, tweetText: action.payload };
-    case 'SET_TWITT_LIST':
+    case 'SET_TWEET_LIST':
       return { ...state, tweetList: action.payload };
     case 'SET_HASHTAG_LIST':
       return { ...state, hashTags: action.payload };
-    case 'LIKE_TWITT':
+    case 'LIKE_TWEET':
       const tweetId = action.payload;
       const foundIndex = state.tweetList.findIndex(
         (item) => item._id === tweetId
@@ -80,7 +80,7 @@ export {
 // ###########################################################
 function setTweetText(dispatch, tweetText) {
   dispatch({
-    type: 'SET_TWITT_TEXT',
+    type: 'SET_TWEET_TEXT',
     payload: tweetText,
   });
 }
@@ -94,7 +94,7 @@ function likeTweet(dispatch, id) {
 
 function setTweetList(dispatch, list) {
   dispatch({
-    type: 'SET_Tweet_LIST',
+    type: 'SET_TWEET_LIST',
     payload: list,
   });
 }

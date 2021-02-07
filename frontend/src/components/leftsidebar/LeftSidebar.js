@@ -5,11 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link } from 'react-router-dom';
-// import {getUsers} from "../../api/api_tweet";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { uploadUserPhoto } from '../../api/api_auth';
 import { toast } from 'react-toastify';
+import Axios from 'axios';
 
 export const Twitter = ({ name, id, img }) => {
   const classes = UseStyles();
@@ -47,10 +46,15 @@ const LeftSidebar = () => {
   const inputRef = useRef();
 
   useEffect(() => {
-    getUsers((isOk, data) => {
-      if (!isOk) return toast.error('Hittades ej');
-      setUsers(data);
-    });
+    const fetchData = async () => {
+      try {
+        const { data } = await Axios.get('/api/users');
+        setUsers(data);
+      } catch (err) {
+        return toast.error('Fail to Fetch users');
+      }
+    };
+    fetchData();
   }, []);
 
   const handleToggleMenu = (e) => {
@@ -69,11 +73,11 @@ const LeftSidebar = () => {
       reader.readAsDataURL(e.target.files[0]);
       const formData = new FormData();
       formData.append('image', e.target.files[0]);
-      uploadUserPhoto(formData, (isOk, data) => {
-        if (!isOk) return toast.error('försök igen');
-        toast.success('Ny bild');
-        localStorage.setItem('image', data.imagePath);
-      });
+      // uploadUserPhoto(formData, (isOk, data) => {
+      //   if (!isOk) return toast.error('försök igen');
+      //   toast.success('Ny bild');
+      //   localStorage.setItem('image', data.imagePath);
+      // });
     }
   };
 
@@ -108,10 +112,10 @@ const LeftSidebar = () => {
           className={classes.profileText}
         >
           <Typography className={classes.profileName}>
-            {localStorage.getItem('name')}
+            {localStorage.getItem('fullName')}
           </Typography>
           <Typography className={classes.profileId}>
-            {localStorage.getItem('username')}
+            {localStorage.getItem('userName')}
           </Typography>
         </Grid>
         <input
@@ -132,7 +136,7 @@ const LeftSidebar = () => {
               to={`/users/${item._id}/${item.name}`}
               style={{ width: '100%' }}
             >
-              <Twitter name={item.name} id={item.username} img={item.image} />
+              <Twitter name={item.name} id={item.userName} img={item.image} />
               {index !== users.length - 1 && (
                 <Divider style={{ marginLeft: -24, marginRight: -24 }} />
               )}

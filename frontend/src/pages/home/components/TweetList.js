@@ -1,5 +1,5 @@
 import React from 'react';
-import Tweet from './TweetList';
+import Tweet from './Tweet';
 
 const TweetList = ({ data }) => {
   return (

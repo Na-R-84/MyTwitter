@@ -32,7 +32,7 @@ const Tweet = ({ data: tweet }) => {
 
   const handleLike = async () => {
     try {
-      const { data } = await Axios.put(`/api/tweets/${tweet.id}`);
+      const { data } = await Axios.put(`/api/tweets/${tweet._id}`);
 
       likeTweet(tweetDispatch, tweet._id);
     } catch (err) {
@@ -62,11 +62,10 @@ const Tweet = ({ data: tweet }) => {
               {tweet.user.name}
             </Typography>
             <Typography className={classes.tweetItemId}>
-              {tweet.user.id}
+              {tweet.user._id}
             </Typography>
           </Grid>
 
-          {/*  Add <p> by using coponent={"p"} for tacke the # sign/ dangerouslySetInnerHTML for use innerHtml */}
           <Typography
             dangerouslySetInnerHTML={renderTweet(tweet.text)}
             className={classes.tweetText}
@@ -88,9 +87,6 @@ const Tweet = ({ data: tweet }) => {
         style={{ marginTop: 16 }}
         alignItems={'center'}
       >
-        <IconButton className={classes.newTweetImgBtn} onClick={retweetClick}>
-          <img src={'/images/retweet.png'} className={classes.newTweetImg} />
-        </IconButton>
         <IconButton className={classes.newTweetImgBtn} onClick={handleLike}>
           <FavoriteIcon />
         </IconButton>
