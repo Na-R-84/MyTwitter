@@ -2,15 +2,22 @@ import {makeStyles} from "@material-ui/styles";
 
 const UseStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     width: '18%',
     padding: '1.5rem 1rem'
   },
+ 
   logoType: {
-    fontSize: '1.25rem !important',
-    fontWeight: "600 !important",
-    marginRight: '1rem',
-    color: theme.palette.primary.main
+  
+    fontSize: '1.50rem !important',
+    fontWeight: "500 !important",
+    marginLeft: '1rem',
+    color: 'white'
+  },
+  Divider:{
+    width : 1,
+    backgroundColor:"#7EBAFF !important",
+    filter : "opacity(0.5)"
   },
   hashtagTitle: {
     fontSize: '1.1rem !important',

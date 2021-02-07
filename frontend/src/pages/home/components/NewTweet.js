@@ -82,7 +82,7 @@ const NewTweet = ({ updateTweets }) => {
           style={{ width: 60, height: 60, borderRadius: '50%' }}
         />
         <input
-          placeholder={'label.Vad händer?'}
+          placeholder={'Vad händer?'}
           className={classnames(classes.input)}
           value={tweet}
           onChange={(e) => setTweet(tweetDispatch, e.target.value)}

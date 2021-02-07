@@ -6,7 +6,7 @@ const UseStyles = makeStyles((theme) => ({
   },
   header: {
     padding: 18,
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     display: 'flex',
   },
   headerTitle: {
@@ -20,19 +20,19 @@ const UseStyles = makeStyles((theme) => ({
   },
   newTweet: {
     padding: 18,
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     display: 'flex',
     flexDirection: 'column',
   },
   tweetItem: {
     padding: 18,
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     display: 'flex',
     flexDirection: 'column',
     marginTop: '0.5rem',
   },
   input: {
-    marginRight: '1rem',
+    marginLeft: '1rem',
     border: 'none',
     flex: 1,
     fontWeight: 400,
@@ -41,7 +41,7 @@ const UseStyles = makeStyles((theme) => ({
     },
   },
   newTweetBtn: {
-    color: 'white !important',
+    color: 'black !important',
     borderRadius: '1rem !important',
     minHeight: '30px !important',
     height: '30px !important',
@@ -67,6 +67,7 @@ const UseStyles = makeStyles((theme) => ({
   tweetText: {
     fontSize: '0.9rem',
     marginTop: '0.75rem',
+    marginLeft:'1rem',
   },
   likeCount: {
     fontSize: '0.8rem',

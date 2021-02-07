@@ -145,6 +145,7 @@ const LeftSidebar = () => {
         })}
       </Grid>
       <Menu
+      id="simple-menu"
         open={Boolean(anchorMenu)}
         onClose={() => setAnchorMenu(null)}
         anchorEl={anchorMenu}

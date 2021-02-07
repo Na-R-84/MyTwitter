@@ -11,6 +11,7 @@ import {
 } from '../../context/TweetContext';
 import { toast } from 'react-toastify';
 import Axios from 'axios';
+import Divider from '@material-ui/core/Divider';
 
 const RightSidebar = () => {
   const classes = UseStyles();
@@ -33,13 +34,14 @@ const RightSidebar = () => {
       <Link to={'/'}>
         <Grid container direction={'row'} alignItems={'center'}>
           <Grid item>
-            <img src={'/images/logo.png'} alt="logo" />
+            <img src={'/images/logo.png'} alt="logo" className={classes.logo} />
           </Grid>
           <Grid item>
             <Typography className={classes.logoType}>My Twitter</Typography>
           </Grid>
         </Grid>
       </Link>
+      <Divider className={classes.Divider}/>
       <Typography className={classes.hashtagTitle}>Trender Hashtag</Typography>
 
       <Grid container direction={'column'} alignItems={'center'}>

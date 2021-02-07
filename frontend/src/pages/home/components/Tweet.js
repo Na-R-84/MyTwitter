@@ -39,9 +39,6 @@ const Tweet = ({ data: tweet }) => {
       toast.error('förök igen');
     }
   };
-  const retweetClick = () => {
-    setTweetText(tweetDispatch, tweet.text);
-  };
 
   const classes = UseStyles();
   return (

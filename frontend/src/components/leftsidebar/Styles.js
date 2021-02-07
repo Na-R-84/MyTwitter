@@ -2,14 +2,14 @@ import { makeStyles } from '@material-ui/styles';
 
 const UseStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     width: '25%',
     padding: '1.5rem 2rem',
   },
   profileText: {
-    marginLeft: '0.5rem',
+    marginRight: '1rem',
     width: 'max-content',
-    direction: 'ltr',
+    direction: 'rtl',
   },
   tweeterNameParent: {
     marginRight: '0.5rem',
@@ -24,7 +24,7 @@ const UseStyles = makeStyles((theme) => ({
     fontSize: '0.78rem',
   },
   tweeterRoot: {
-    background: '#f5f8fa',
+    background: '#aac3d4',
     marginTop: '3rem',
     borderRadius: '2.5rem',
     padding: '11px 24px',
@@ -33,18 +33,21 @@ const UseStyles = makeStyles((theme) => ({
     fontSize: '1.1rem !important',
     fontWeight: '600 !important',
     marginBottom: '11px',
+    textAlign:'center'
+    
   },
   tweeterParent: {
     padding: '10px 0',
   },
   menu: {
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     padding: '1rem',
   },
   tweeterImg: {
     width: 50,
     height: 50,
     borderRadius: '50%',
+    marginRight:'1rem'
   },
 }));
 

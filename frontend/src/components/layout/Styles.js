@@ -8,7 +8,7 @@ const UseStyles = makeStyles({
     overflow: 'hidden'
   },
   leftSidebar: {
-    backgroundColor: 'white',
+    backgroundColor: '#00334d',
     width : '25%'
   },
   divider :{
@@ -20,7 +20,7 @@ const UseStyles = makeStyles({
   content:{
     flex: 1,
     overflowY : 'auto',
-    backgroundColor : 'white'
+    backgroundColor : '#00334d'
   },
   waitParent:{
     display :'flex',
