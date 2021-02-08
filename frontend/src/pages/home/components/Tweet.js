@@ -32,7 +32,14 @@ const Tweet = ({ data: tweet }) => {
 
   const handleLike = async () => {
     try {
-      const { data } = await Axios.put(`/api/tweets/${tweet._id}`);
+      const token = localStorage.getItem('token');
+      const { data } = await Axios.put(
+        `/api/tweets/${tweet._id}/like`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       likeTweet(tweetDispatch, tweet._id);
     } catch (err) {
@@ -56,10 +63,7 @@ const Tweet = ({ data: tweet }) => {
         >
           <Grid item container>
             <Typography className={classes.tweetItemName}>
-              {tweet.user.name}
-            </Typography>
-            <Typography className={classes.tweetItemId}>
-              {tweet.user._id}
+              {tweet.user.fullName}
             </Typography>
           </Grid>
 
@@ -87,7 +91,7 @@ const Tweet = ({ data: tweet }) => {
         <IconButton className={classes.newTweetImgBtn} onClick={handleLike}>
           <FavoriteIcon />
         </IconButton>
-        <Typography className={classes.likeCount}>{tweet.likes}</Typography>
+        <Typography className={classes.likeCount}>{tweet.numLikes}</Typography>
       </Grid>
     </div>
   );

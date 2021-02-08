@@ -5,7 +5,10 @@ const tweetSchema = new mongoose.Schema(
     text: { type: String, required: true },
     image: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    likes: { type: Number, required: true, default: 0 },
+    likes: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    ],
+    numLikes: { type: Number, required: true, default: 0 },
   },
   {
     timestamps: true,

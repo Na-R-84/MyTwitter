@@ -10,6 +10,14 @@ hashtagRoutes.get('/', async (req, res) => {
   db.disconnect();
   res.send(hashtags);
 });
+hashtagRoutes.get('/:hashtag/tweets', async (req, res) => {
+  db.connect();
+  const hashtag = await Hashtag.findOne({
+    name: req.params.hashtag,
+  }).populate('tweets');
+  db.disconnect();
+  res.send(hashtag.tweets);
+});
 
 hashtagRoutes.post('/', isAuth, async (req, res) => {
   const newHashtag = new Hashtag({

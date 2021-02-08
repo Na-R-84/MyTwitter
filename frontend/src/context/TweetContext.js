@@ -24,7 +24,7 @@ function TweettReducer(state, action) {
           ...state.tweetList.slice(0, foundIndex),
           {
             ...state.tweetList[foundIndex],
-            likes: state.tweetList[foundIndex].likes + 1,
+            numLikes: state.tweetList[foundIndex].numLikes + 1,
           },
           ...state.tweetList.slice(foundIndex + 1),
         ],
@@ -87,7 +87,7 @@ function setTweetText(dispatch, tweetText) {
 
 function likeTweet(dispatch, id) {
   dispatch({
-    type: 'LIKE_Tweet',
+    type: 'LIKE_TWEET',
     payload: id,
   });
 }

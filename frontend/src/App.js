@@ -30,7 +30,7 @@ const App = () => {
                     />
                     <Route
                       exact
-                      path={'/users/:id/:name'}
+                      path={'/users/:userName'}
                       component={TweetsByUser}
                     />
                     <Route component={Page404} />

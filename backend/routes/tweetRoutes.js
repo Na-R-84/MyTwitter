@@ -11,7 +11,28 @@ tweetRoutes.get('/', async (req, res) => {
   db.disconnect();
   res.send(tweets);
 });
+tweetRoutes.get('/users/:userName', async (req, res) => {
+  db.connect();
+  const tweets = await Tweet.find({
+    // 'user.userName': req.params.userName,
+  }).populate('user', 'userName');
+  db.disconnect();
+  res.send(tweets.filter((x) => x.user.userName === req.params.userName));
+});
 
+tweetRoutes.put('/:tweetId/like', isAuth, async (req, res) => {
+  const tweet = await Tweet.findById(req.params.tweetId);
+  if (tweet) {
+    if (tweet.likes.indexOf(req.user._id) >= 0) {
+      res.send({ message: 'You liked it already' });
+    } else {
+      tweet.numLikes += 1;
+      tweet.likes.push(req.user._id);
+      await tweet.save();
+      res.send({ message: 'You liked it successfully' });
+    }
+  }
+});
 tweetRoutes.post('/', isAuth, async (req, res) => {
   const newTweet = new Tweet({
     text: req.body.text,

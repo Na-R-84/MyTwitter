@@ -130,13 +130,14 @@ const LeftSidebar = () => {
           populära tweetrare
         </Typography>
         <Divider style={{ marginLeft: -24, marginRight: -24 }} />
-        {users.map((item, index) => {
+        {users.map((user, index) => {
           return (
-            <Link
-              to={`/users/${item._id}/${item.name}`}
-              style={{ width: '100%' }}
-            >
-              <Twitter name={item.name} id={item.userName} img={item.image} />
+            <Link to={`/users/${user.userName}`} style={{ width: '100%' }}>
+              <Twitter
+                name={user.fullName}
+                id={user.userName}
+                img={user.image}
+              />
               {index !== users.length - 1 && (
                 <Divider style={{ marginLeft: -24, marginRight: -24 }} />
               )}
@@ -145,7 +146,7 @@ const LeftSidebar = () => {
         })}
       </Grid>
       <Menu
-      id="simple-menu"
+        id="simple-menu"
         open={Boolean(anchorMenu)}
         onClose={() => setAnchorMenu(null)}
         anchorEl={anchorMenu}
