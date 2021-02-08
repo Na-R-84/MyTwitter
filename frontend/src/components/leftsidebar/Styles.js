@@ -17,10 +17,11 @@ const UseStyles = makeStyles((theme) => ({
   },
   profileName: {
     flex: 1,
+    color:'#557591'
   },
   profileId: {
     flex: 1,
-    color: theme.palette.text.hint,
+    color: '#6e8eaa',
     fontSize: '0.78rem',
   },
   tweeterRoot: {
@@ -33,7 +34,8 @@ const UseStyles = makeStyles((theme) => ({
     fontSize: '1.1rem !important',
     fontWeight: '600 !important',
     marginBottom: '11px',
-    textAlign:'center'
+    textAlign:'center',
+    color:'#00334d'
     
   },
   tweeterParent: {

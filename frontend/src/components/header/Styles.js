@@ -8,7 +8,8 @@ const UseStyles = makeStyles(theme => ({
   }, headerTitle: {
     fontSize: '1.2rem',
     fontWeight: 600,
-    marginRight: '0.5rem'
+    marginRight: '0.5rem',
+    color:'	 #9fb4c6',
   },
 }));
 
