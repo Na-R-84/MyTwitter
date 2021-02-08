@@ -189,7 +189,7 @@ const LogInPage = () => {
             onChange={(e) => setPasswordRegister(e.target.value)}
           />
 
-          <TextField
+          <TextField className={classes.TextField}
             variant="outlined"
             margin="normal"
             required

@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { toast } from 'react-toastify';
 import Axios from 'axios';
 
-export const Twitter = ({ name, id, img }) => {
+export const Twitter = ({ fullName, userName, img }) => {
   const classes = UseStyles();
 
   const getImage = () => {
@@ -30,8 +30,8 @@ export const Twitter = ({ name, id, img }) => {
           alignItems={'flex-start'}
           className={classes.tweeterNameParent}
         >
-          <Typography className={classes.profileName}>{name}</Typography>
-          <Typography className={classes.profileId}>{id}</Typography>
+          <Typography className={classes.profileName}>{fullName}</Typography>
+          <Typography className={classes.profileId}>{userName}</Typography>
         </Grid>
       </Grid>
     </ButtonBase>
