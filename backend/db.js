@@ -13,8 +13,8 @@ async function connect() {
       console.log('use pre con');
       return;
     }
-    await mongoose.disconnect();
-    console.log('disconnect');
+    // await mongoose.disconnect();
+    // console.log('disconnect');
   }
   const db = await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -28,8 +28,8 @@ async function connect() {
 async function disconnect() {
   if (connection.isConnected) {
     if (process.env.NODE_ENV === 'production') {
-      await mongoose.disconnect();
-      console.log('disconnect');
+      // await mongoose.disconnect();
+      // console.log('disconnect');
     }
   }
 }

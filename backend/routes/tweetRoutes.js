@@ -1,6 +1,7 @@
 import express from 'express';
 import db from '../db.js';
 import Tweet from '../models/Tweet.js';
+import Hashtag from '../models/Hashtag.js';
 import { isAuth, signToken } from '../utils.js';
 
 const tweetRoutes = express.Router();
@@ -19,10 +20,42 @@ tweetRoutes.post('/', isAuth, async (req, res) => {
   });
   db.connect();
   const tweet = await newTweet.save();
+  // insert hashtags from tweet
+
+  const hashtags = findHashtags(tweet.text);
+
+  for (let hashtag of hashtags) {
+    const existHashtag = await Hashtag.findOne({ name: hashtag });
+    if (existHashtag) {
+      existHashtag.numTweets += 1;
+      existHashtag.tweets.push(tweet._id);
+      await existHashtag.save();
+    } else {
+      const newHashtag = new Hashtag({
+        name: hashtag,
+        numTweets: 1,
+        user: req.user._id,
+        tweets: [tweet._id],
+      });
+      await newHashtag.save();
+    }
+  }
   db.disconnect();
   res.send({
     message: 'Tweet created successfully',
     tweet,
   });
 });
+
+function findHashtags(searchText) {
+  const regexp = /\B\#\w\w+\b/g;
+  const result = searchText.match(regexp);
+  if (result) {
+    // remove hashtag sign from the hashtag
+    return result.map((x) => x.substring(1, x.length));
+  } else {
+    return [];
+  }
+}
+
 export default tweetRoutes;

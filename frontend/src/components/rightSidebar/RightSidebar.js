@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import UseStyles from './Styles';
 import Grid from '@material-ui/core/Grid';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link } from 'react-router-dom';
 import {
   setHashTagList,
@@ -12,6 +11,7 @@ import {
 import { toast } from 'react-toastify';
 import Axios from 'axios';
 import Divider from '@material-ui/core/Divider';
+import { List, ListItem, Tooltip } from '@material-ui/core';
 
 const RightSidebar = () => {
   const classes = UseStyles();
@@ -41,21 +41,21 @@ const RightSidebar = () => {
           </Grid>
         </Grid>
       </Link>
-      <Divider className={classes.Divider}/>
+      <Divider className={classes.Divider} />
       <Typography className={classes.hashtagTitle}>Trender Hashtag</Typography>
-
-      <Grid container direction={'column'} alignItems={'center'}>
+      <List>
         {hashTags.map((item) => (
-          <ButtonBase className={classes.hashtagParent}>
-            <Link to={'/hashtags/' + item.text} style={{ width: '100%' }}>
-              <Grid item container>
-                <img src={'/images/hashtag.png'} alt="hashtag" />
-                <Typography className={classes.hashtag}>{item.text}</Typography>
-              </Grid>
-            </Link>
-          </ButtonBase>
+          <ListItem>
+            <Tooltip arrow title={`${item.numTweets} tweets`}>
+              <Link to={'/hashtags/' + item.name}>
+                <Typography className={classes.hashtag}>
+                  #{item.name}
+                </Typography>
+              </Link>
+            </Tooltip>
+          </ListItem>
         ))}
-      </Grid>
+      </List>
     </div>
   );
 };

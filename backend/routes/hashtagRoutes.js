@@ -6,7 +6,7 @@ import { isAuth, signToken } from '../utils.js';
 const hashtagRoutes = express.Router();
 hashtagRoutes.get('/', async (req, res) => {
   db.connect();
-  const hashtags = await Hashtag.find();
+  const hashtags = await Hashtag.find().sort({ numTweets: -1 });
   db.disconnect();
   res.send(hashtags);
 });

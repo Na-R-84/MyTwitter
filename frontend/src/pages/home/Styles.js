@@ -60,14 +60,15 @@ const UseStyles = makeStyles((theme) => ({
   },
   tweetItemId: {
     fontSize: '0.9rem',
-    color: theme.palette.text.hint,
+    color: '#ffffff',
     marginRight: '0.5rem',
     paddingTop: '0.1rem',
   },
   tweetText: {
     fontSize: '0.9rem',
     marginTop: '0.75rem',
-    marginLeft:'1rem',
+    marginLeft: '1rem',
+    color: '#ffffff',
   },
   likeCount: {
     fontSize: '0.8rem',
