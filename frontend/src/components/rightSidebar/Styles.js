@@ -9,9 +9,9 @@ const UseStyles = makeStyles((theme) => ({
 
   logoType: {
     fontSize: '1.50rem !important',
-    fontWeight: '500 !important',
+    fontWeight: '600 !important',
     marginLeft: '1rem',
-    color: 'white',
+    color: '#9fb4c6',
   },
   Divider: {
     width: 1,
@@ -23,6 +23,7 @@ const UseStyles = makeStyles((theme) => ({
     fontWeight: '600 !important',
     marginTop: '3rem',
     marginBottom: '1.5rem',
+    color:'	 #9fb4c6'
   },
 
   hashtag: {
